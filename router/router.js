@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 const Users = require('../models/users');//loading table model
-
+const ensureAuthenticated = require('../services/auth').ensureAuthenticated;
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -93,8 +93,13 @@ router.route('/register')
         })
 })
 
-router.get('/successlogin',(req, res)=>{
-    res.render('successlogin')
+router.get('/success/:name',
+    (req, res)=>{
+    // let name = req.param('name');//extracting from url(param is function)- better way to use req.params.name
+    console.log(req.params.name)
+    res.render('successlogin',{
+        name : req.params.name
+    })
 })
 
 module.exports = router;
