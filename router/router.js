@@ -95,8 +95,9 @@ router.route('/register')
 
 router.get('/success/:name',
     (req, res)=>{
+    console.log('req.session in success route', req.session)
     // let name = req.param('name');//extracting from url(param is function)- better way to use req.params.name
-    console.log(req.params.name)
+    // console.log(req.params.name)
     res.render('successlogin',{
         name : req.params.name
     })
